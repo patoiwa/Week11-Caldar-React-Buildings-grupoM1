@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import AddItem from './components/AddItem';
+import Header from './components/Header';
+import Table from './components/Table'
+import buildingsData from './data/buildings'
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class App extends Component {
+  state = {
+    buildings: buildingsData
+  }
 
+  // Delete Item
+  delItem = (id) => {
+    this.setState({
+      buildings: [...this.state.buildings.filter(building => building.id !== id)] 
+    });
+  }
+
+  render() {
+    return (
+        <div className="App">
+            <Header />
+            <AddItem addItem={this.addItem} />
+            <Table buildings={this.state.buildings} delItem={this.delItem} />
+        </div>
+    );
+  }
+}
 export default App;
