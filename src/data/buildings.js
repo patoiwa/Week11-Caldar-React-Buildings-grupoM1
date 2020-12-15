@@ -301,4 +301,4 @@ const buildingsData = [
         "phone": "234-630-9734"
       }
 ]
-export default boilersData;
+export default buildingsData;
